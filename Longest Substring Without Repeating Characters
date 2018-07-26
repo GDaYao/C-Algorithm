@@ -1,0 +1,48 @@
+
+void confirmLongSubStringInputStr(string s)
+{
+	// 截取字符串的最长子串在没有重复字节
+	string s = "pwwkew";
+	std::vector<std::string> subVec;
+
+	for (int i = 0; i < s.size(); i++)
+	{
+		string a = s.substr(i, 1);
+		string b = s.substr(i+1,1);
+		if (strcmp(a.c_str(), b.c_str()) == 0){
+			continue;
+		}else{
+
+			if (subVec.size() == 0){
+				// 1. 把子字符合并到到一个字符串中
+				string c = a + b;
+				subVec.push_back(c);
+				continue;
+			}
+			else {
+				// 如果当前的数组存在元素就取出最后一个元素，把最新的i+1元素添加进入
+				string vecLastStr = subVec.back();
+				string c = vecLastStr + b;
+				subVec.push_back(c);
+				continue;
+			}
+
+		}
+
+		if (i + 1 == s.size()-1) {
+			break;
+		}
+	} // for 循环
+	
+	for (int i = 0; i < subVec.size(); i++) {
+		string a = subVec.at(i);
+		string b = subVec.at(i+1);
+
+		string c = a > b ? a : b; 
+		if (i+1 == s.size()-1){
+			//log("log-->输出字符长度：%d",c.size());
+			break;
+		}
+		
+	}
+} 
